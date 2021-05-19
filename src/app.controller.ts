@@ -6,8 +6,8 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @MessagePattern('XFttRJd*qzQPsLpgB2z.XiJo')
-  execute(query) {
+  @MessagePattern('query')
+  query(query) {
     return this.appService.process(query);
   }
 }
