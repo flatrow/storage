@@ -20,24 +20,25 @@ export class AppService {
         .map(space => [
           space.name,
           schemaBuilder(
-          Object.fromEntries(
-            readdirSync
-              (join(__dirname, 'data', space.name), { withFileTypes: true })
-              .filter(entity => entity.isDirectory())
-              .map(entity => [
-                entity.name,
-                readdirSync(join(__dirname, 'data', space.name, entity.name), { withFileTypes: true })
-                  .filter(item => item.isFile() && item.name !== '.DS_Store')
-                  .map(item => {
-                    try {
-                      return JSON.parse(
-                        readFileSync(join(__dirname, 'data', space.name, entity.name, item.name), { encoding: 'utf8' })
-                      )
-                    } catch { }
-                  })
-                  .filter(item => item)
-              ])
-          )
+            Object.fromEntries(
+              readdirSync
+                (join(__dirname, 'data', space.name), { withFileTypes: true })
+                .filter(entity => entity.isDirectory())
+                .map(entity => [
+                  entity.name,
+                  readdirSync(join(__dirname, 'data', space.name, entity.name), { withFileTypes: true })
+                    .filter(item => item.isFile() && item.name !== '.DS_Store')
+                    .map(item => {
+                      try {
+                        return JSON.parse(
+                          readFileSync(join(__dirname, 'data', space.name, entity.name, item.name), { encoding: 'utf8' })
+                        )
+                      } catch { }
+                    })
+                    .filter(item => item)
+                ])
+                .filter(entity => (console.log(`For space ${space.name} loaded ${entity[1].length} ${entity[0]}`), entity))
+            )
           )
         ])
     );
