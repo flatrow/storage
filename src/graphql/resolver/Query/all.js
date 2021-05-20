@@ -25,9 +25,7 @@ export default (entityData = []) => (
         });
     }
 
-    console.log(`${items.length} entities count before filtering`);
     items = applyFilters(items, filter);
-    console.log(`${items.length} entities count after filtering`);
 
     if (distinct) {
         distinct = distinct.split(' ');
@@ -38,7 +36,6 @@ export default (entityData = []) => (
                 return results;
             }
         }, []);
-        console.log(`${items.length} entities count after distinct`);
     }
 
     if (take) {
