@@ -20,25 +20,25 @@ export default (entityData = [], filter = {}) => {
                     return;
                 }
                 if (key.indexOf('_gte') !== -1) {
-                    // less than or equal
+                    // greater than or equal
                     const realKey = key.replace(/(_gte)$/, '');
                     items = items.filter((d) => d[realKey] >= filter[key]);
                     return;
                 }
                 if (key.indexOf('_lt') !== -1) {
-                    // less than or equal
+                    // less than
                     const realKey = key.replace(/(_lt)$/, '');
                     items = items.filter((d) => d[realKey] < filter[key]);
                     return;
                 }
                 if (key.indexOf('_gt') !== -1) {
-                    // less than or equal
+                    // greater than
                     const realKey = key.replace(/(_gt)$/, '');
                     items = items.filter((d) => d[realKey] > filter[key]);
                     return;
                 }
                 if (key.indexOf('_in') !== -1) {
-                    // less than or equal
+                    // includes
                     const realKey = key.replace(/(_in)$/, '');
                     items = items.filter((d) => d[realKey].includes(filter[key]));
                     return;
