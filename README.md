@@ -1,6 +1,6 @@
 ## Description
 
-JSON storage TCP Nest microservice with GraphQL syntax.
+JSON storage TCP Nest microservice with GraphQL syntax for extra small projects.
 
 ### Storage structure
 
@@ -49,7 +49,7 @@ export class AppService {
     return await this.storageProxy.send('query', {
       space: 'library',
       token: storage_token,
-      query: `{ allAuthors(page: 1, take: 10, filter: { name_in: "Mike" }) { id, name, Books { id } } }`,
+      query: `{ allAuthors(page: 1, take: 10, sortField: "id", filter: { name_in: "Mike" }) { id, name, Books { id } } }`,
     }).toPromise();
   }
 
