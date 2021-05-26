@@ -47,7 +47,7 @@ export class AppService {
     storageProxy.connect();
   }
 
-  async getAuthors(section: string) {
+  async getAuthors() {
     return await this.storageProxy.send('query', {
       space: 'library',
       token: storage_token,
@@ -55,7 +55,7 @@ export class AppService {
     }).toPromise();
   }
 
-  async createAuthor(section: string) {
+  async createAuthor() {
     return await this.storageProxy.send('query', {
       space: 'library',
       token: storage_token,
