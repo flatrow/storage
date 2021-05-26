@@ -1,4 +1,4 @@
-export default (entityData = []) => (_, { id }) => {
+export default (entityCollection, entityData = [], subject = undefined) => (_, { id }) => {
     let removedEntity = undefined;
     if (id != null) {
         const stringId = id.toString();
@@ -8,6 +8,8 @@ export default (entityData = []) => (_, { id }) => {
 
         if (indexOfEntity !== -1) {
             removedEntity = entityData.splice(indexOfEntity, 1)[0];
+            if (subject && subject.next)
+                subject.next([entityCollection, removedEntity]);
         }
     }
     return removedEntity;

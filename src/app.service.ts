@@ -3,6 +3,7 @@ import { join } from 'path';
 import { graphql } from 'graphql';
 import { Injectable } from '@nestjs/common';
 import schemaBuilder from './graphql/schemaBuilder';
+import { getMutationSubject, onCreate, onRemove, onUpdate } from './mutationApplier';
 
 @Injectable()
 export class AppService {
@@ -38,7 +39,12 @@ export class AppService {
                     .filter(item => item)
                 ])
                 .filter(entity => (console.log(`For space ${space.name} loaded ${entity[1].length} ${entity[0]}`), entity))
-            )
+            ),
+            {
+              createSubject: getMutationSubject(space.name, onCreate),
+              updateSubject: getMutationSubject(space.name, onUpdate),
+              removeSubject: getMutationSubject(space.name, onRemove),
+            }
           )
         ])
     );

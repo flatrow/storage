@@ -19,14 +19,14 @@ const getQueryResolvers = (entityName, data) => ({
     [entityName]: single(data),
 });
 
-const getMutationResolvers = (entityName, data) => ({
-    [`create${entityName}`]: create(data),
-    [`createMany${entityName}`]: createMany(data),
-    [`update${entityName}`]: update(data),
-    [`remove${entityName}`]: remove(data),
+const getMutationResolvers = (entityCollection, entityName, data, options) => ({
+    [`create${entityName}`]: create(entityCollection, data, options.createSubject),
+    [`createMany${entityName}`]: createMany(entityCollection, data, options.createSubject),
+    [`update${entityName}`]: update(entityCollection, data, options.updateSubject),
+    [`remove${entityName}`]: remove(entityCollection, data, options.removeSubject),
 });
 
-export default (data) => {
+export default (data, options) => {
     return Object.assign(
         {},
         {
@@ -44,7 +44,7 @@ export default (data) => {
                     Object.assign(
                         {},
                         resolvers,
-                        getMutationResolvers(getTypeFromKey(key), data[key])
+                        getMutationResolvers(key, getTypeFromKey(key), data[key], options)
                     ),
                 {}
             ),

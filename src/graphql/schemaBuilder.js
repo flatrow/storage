@@ -47,9 +47,9 @@ import resolver from './resolver';
  * });
  *
  */
-export default (data) =>
+export default (data, options = {}) =>
     makeExecutableSchema({
         typeDefs: printSchema(getSchemaFromData(data)),
-        resolvers: resolver(data),
+        resolvers: resolver(data, options),
         logger: { log: (e) => console.log(e) }, // eslint-disable-line no-console
     });

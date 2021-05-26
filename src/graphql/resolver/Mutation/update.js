@@ -1,4 +1,4 @@
-export default (entityData = []) => (_, params) => {
+export default (entityCollection, entityData = [], subject = undefined) => (_, params) => {
     let updatedEntity = undefined;
     if (params.id != null) {
         const stringId = params.id.toString();
@@ -12,6 +12,8 @@ export default (entityData = []) => (_, params) => {
                 params
             );
             updatedEntity = entityData[indexOfEntity];
+            if (subject && subject.next)
+                subject.next([entityCollection, updatedEntity]);
         }
     }
     return updatedEntity;
