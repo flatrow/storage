@@ -1,3 +1,5 @@
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/flatrow/storage) ![Docker Pulls](https://img.shields.io/docker/pulls/flatrow/storage) ![GitHub](https://img.shields.io/github/license/flatrow/storage)
+
 ## Description
 
 JSON storage TCP Nest microservice with GraphQL syntax for extra small projects.
