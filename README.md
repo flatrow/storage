@@ -1,6 +1,6 @@
 ## Description
 
-JSON storage TCP microservice with GraphQL syntax.
+JSON storage TCP Nest microservice with GraphQL syntax.
 
 ### Storage structure
 
