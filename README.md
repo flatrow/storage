@@ -122,7 +122,7 @@ services:
 
 ## References
 
-Powered by [Nest.js](https://nestjs.com) framework.
+Powered with [Nest.js](https://nestjs.com) framework.
 
 Containerized with [Docker](https://www.docker.com) platform.
 
